@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Curso;
 
 public class CursoDAO {
@@ -32,7 +33,7 @@ public class CursoDAO {
             sql.execute();
 
         } catch (SQLException ex) {
-            Logger.getLogger(CursoDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
@@ -71,11 +72,11 @@ public class CursoDAO {
         }
         return null;
     }
-    
-     public List<Curso> Pesquisar(String descricao) {
+
+    public List<Curso> Pesquisar(String descricao) {
         try {
             List<Curso> cursos = new ArrayList<>();
-            String query = "select * from curso where descricao_curso ilike '%"+descricao+"%'";
+            String query = "select * from curso where descricao_curso ilike '%" + descricao + "%'";
 
             sql = conexao.prepareStatement(query);
 
@@ -93,5 +94,5 @@ public class CursoDAO {
             Logger.getLogger(CursoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
         return null;
-     }
+    }
 }
