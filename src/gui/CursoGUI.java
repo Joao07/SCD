@@ -17,6 +17,9 @@ public class CursoGUI extends javax.swing.JInternalFrame {
     public CursoGUI() {
         initComponents();
         TabelaCurso();
+        
+        
+        
     }
 
     public final void TabelaCurso() {
