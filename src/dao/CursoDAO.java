@@ -24,14 +24,14 @@ public class CursoDAO {
 
     public void Gravar(Curso curso) {
         String query = "INSERT INTO curso(\n"
-                + "            descricao_curso)\n"
+                + "    descricao_curso)\n"
                 + "    VALUES (?);";
         try {
             sql = conexao.prepareStatement(query);
 
             sql.setString(1, curso.getDescricao());
             sql.execute();
-
+            JOptionPane.showMessageDialog(null, "Curso cadastrado com Sucesso !!!");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, ex.getMessage());
         }
@@ -44,7 +44,7 @@ public class CursoDAO {
 
             sql.setLong(1, curso.getId());
             sql.execute();
-
+            JOptionPane.showMessageDialog(null, "Curso excluido com Sucesso !!!");
         } catch (SQLException ex) {
             Logger.getLogger(CursoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }

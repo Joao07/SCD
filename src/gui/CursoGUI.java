@@ -291,7 +291,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         cursoDAO.Gravar(curso);
         jTextDescricao.setText("");
         TabelaCurso();
-        JOptionPane.showMessageDialog(null,"Curso cadastrado com Sucesso !!!");
+       
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

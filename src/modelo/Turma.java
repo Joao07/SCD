@@ -2,7 +2,7 @@ package modelo;
 
 public class Turma {
 
-    private long id;
+    private long id,ano;
     private String descricao, turno;
 
     public long getId() {
@@ -27,6 +27,14 @@ public class Turma {
 
     public void setTurma(String turno) {
         this.turno = turno;
+    }
+
+    public long getAno() {
+        return ano;
+    }
+
+    public void setAno(long ano) {
+        this.ano = ano;
     }
 
 }
