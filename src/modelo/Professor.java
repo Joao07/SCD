@@ -2,38 +2,49 @@ package modelo;
 
 public class Professor {
 
-    private long id;
-    private String nome,
-            sexo,
+    private long Id,Numero;
+    private String Nome,
+            Sexo,
             CPF,
             CEP,
             Rua,
-            Numero,
             Bairro,
-            Cidade;
+            Cidade,
+            CodSiape,
+            Email,
+            Celular,
+            TelefoneFixo;
 
     public long getId() {
-        return id;
+        return Id;
     }
 
-    public void setId(long id) {
-        this.id = id;
+    public void setId(long Id) {
+        this.Id = Id;
+    }
+
+    public long getNumero() {
+        return Numero;
+    }
+
+    public void setNumero(long Numero) {
+        this.Numero = Numero;
     }
 
     public String getNome() {
-        return nome;
+        return Nome;
     }
 
-    public void setNome(String nome) {
-        this.nome = nome;
+    public void setNome(String Nome) {
+        this.Nome = Nome;
     }
 
     public String getSexo() {
-        return sexo;
+        return Sexo;
     }
 
-    public void setSexo(String sexo) {
-        this.sexo = sexo;
+    public void setSexo(String Sexo) {
+        this.Sexo = Sexo;
     }
 
     public String getCPF() {
@@ -60,14 +71,6 @@ public class Professor {
         this.Rua = Rua;
     }
 
-    public String getNumero() {
-        return Numero;
-    }
-
-    public void setNumero(String Numero) {
-        this.Numero = Numero;
-    }
-
     public String getBairro() {
         return Bairro;
     }
@@ -83,5 +86,39 @@ public class Professor {
     public void setCidade(String Cidade) {
         this.Cidade = Cidade;
     }
+
+    public String getCodSiape() {
+        return CodSiape;
+    }
+
+    public void setCodSiape(String CodSiape) {
+        this.CodSiape = CodSiape;
+    }
+
+    public String getEmail() {
+        return Email;
+    }
+
+    public void setEmail(String Email) {
+        this.Email = Email;
+    }
+
+    public String getCelular() {
+        return Celular;
+    }
+
+    public void setCelular(String Celular) {
+        this.Celular = Celular;
+    }
+
+    public String getTelefoneFixo() {
+        return TelefoneFixo;
+    }
+
+    public void setTelefoneFixo(String TelefoneFixo) {
+        this.TelefoneFixo = TelefoneFixo;
+    }
+
+  
 
 }

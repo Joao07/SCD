@@ -25,7 +25,7 @@ public class Turma {
         return turno;
     }
 
-    public void setTurma(String turno) {
+    public void setTurno(String turno) {
         this.turno = turno;
     }
 

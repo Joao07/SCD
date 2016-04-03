@@ -23,8 +23,8 @@ public class TurmaDAO {
     }
 
     public void Gravar(Turma turma) {
-      
-            String query = "insert into turma(descricao_turma,turno_turma,ano_turma) values (?,?,?)";
+
+        String query = "insert into turma(descricao_turma,turno_turma,ano_turma) values (?,?,?)";
         try {
             sql = conexao.prepareStatement(query);
 
@@ -36,7 +36,19 @@ public class TurmaDAO {
             JOptionPane.showMessageDialog(null, "Turma cadastrada com sucesso !!!");
 
         } catch (SQLException ex) {
-            Logger.getLogger(TurmaDAO.class.getName()).log(Level.SEVERE, null, ex);
+            JOptionPane.showMessageDialog(null, ex.getMessage());
+        }
+    }
+
+    public void Excluir(Turma turma) {
+        String query = "delete from turma where id_turma = ? ";
+        try {
+            sql = conexao.prepareStatement(query);
+            sql.setLong(1, turma.getId());
+            sql.execute();
+            JOptionPane.showMessageDialog(null, " Turma excluida com Sucesso !!!");
+        } catch (SQLException ex) {
+            JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 
@@ -53,7 +65,7 @@ public class TurmaDAO {
                 Turma turma = new Turma();
                 turma.setId(registro.getLong("id_Turma"));
                 turma.setDescricao(registro.getString("descricao_turma"));
-                turma.setDescricao(registro.getString("turno_turma"));
+                turma.setTurno(registro.getString("turno_turma"));
                 Turmas.add(turma);
 
             }

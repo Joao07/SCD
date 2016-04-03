@@ -301,7 +301,6 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         ID_CURSO.setText(tabelaCurso.getValueAt(linha, 0).toString());
         curso.setId(Long.parseLong(ID_CURSO.getText()));
         cursoDAO.Excluir(curso);
-        JOptionPane.showMessageDialog(null, "Exluido com sucesso!!!");
         TabelaCurso();
         
     }//GEN-LAST:event_jButton2ActionPerformed

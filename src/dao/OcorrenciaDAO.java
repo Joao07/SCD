@@ -9,6 +9,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 import modelo.Ocorrencia;
 
 public class OcorrenciaDAO {
@@ -28,8 +29,9 @@ public class OcorrenciaDAO {
             sql = conexao.prepareStatement(query);
             sql.setLong(1, ocorrencia.getId_ocorrencia());
             sql.execute();
+            JOptionPane.showMessageDialog(null,"Cadastrado com sucesso !!!");
         } catch (SQLException ex) {
-            Logger.getLogger(OcorrenciaDAO.class.getName()).log(Level.SEVERE, null, ex);
+           JOptionPane.showMessageDialog(null, ex.getMessage());
         }
     }
 

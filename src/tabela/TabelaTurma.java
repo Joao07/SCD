@@ -10,7 +10,7 @@ import modelo.Turma;
 public class TabelaTurma extends AbstractTableModel {
 
     private final List<Turma> turmas;
-    private final String[] colunas = {"ID", "Descrição","Turma"};
+    private final String[] colunas = {"ID", "Descrição","Turno"};
     private TurmaDAO TurmaDAO;
     
 

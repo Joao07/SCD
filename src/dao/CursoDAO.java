@@ -28,7 +28,6 @@ public class CursoDAO {
                 + "    VALUES (?);";
         try {
             sql = conexao.prepareStatement(query);
-
             sql.setString(1, curso.getDescricao());
             sql.execute();
             JOptionPane.showMessageDialog(null, "Curso cadastrado com Sucesso !!!");
@@ -41,7 +40,6 @@ public class CursoDAO {
         String query = "delete from curso where id_curso = ? ";
         try {
             sql = conexao.prepareStatement(query);
-
             sql.setLong(1, curso.getId());
             sql.execute();
             JOptionPane.showMessageDialog(null, "Curso excluido com Sucesso !!!");
