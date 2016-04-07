@@ -1,4 +1,3 @@
-
 package modelo;
 
 public class Disciplina {
@@ -31,5 +30,9 @@ public class Disciplina {
         this.cargaHoraria = cargaHoraria;
     }
 
+    @Override
+    public String toString() {
+        return descricao.trim();
+    }
 
 }

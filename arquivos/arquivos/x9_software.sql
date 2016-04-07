@@ -19,7 +19,8 @@ CREATE TABLE professor (
 
 CREATE TABLE curso (
     id_curso serial NOT NULL primary key,
-    descricao_curso character varying(60)
+    descricao_curso character varying(60),
+    quantidadeModulos int not null
 );
 
 CREATE TABLE disciplina (
@@ -28,11 +29,21 @@ CREATE TABLE disciplina (
     carga_horaria integer
 );
 
+CREATE TABLE CursoDisciplina (
+    id_disciplina int NOT NULL,
+    id_curso int not null,
+    modulo integer,
+foreign key (id_curso) references curso (id_curso)
+);
+
 CREATE TABLE turma (
     id_turma serial NOT NULL primary key,
+    id_curso int not null,
     descricao_turma character varying(60),
     turno_turma character varying(15),
-    ano_turma integer
+    ano_turma integer,
+foreign key (id_disciplina)references disciplina (id_disciplina),
+foreign key (id_curso) references curso (id_curso)
 );
 
 CREATE TABLE periodo (
@@ -53,7 +64,6 @@ CREATE TABLE horario (
     "hora_fim" character(20), 
     "data" date,
     "status" character(50),
-
 foreign key (id_professor)references professor (id_professor)
 );
 

@@ -8,7 +8,7 @@ import modelo.Curso;
 public class TabelaCurso extends AbstractTableModel {
 
     private final List<Curso> cursos;
-    private final String[] colunas = {"ID", "Descrição"};
+    private final String[] colunas = {"ID", "Descrição", "Modúlos"};
     private CursoDAO CursoDAO;
 
     public TabelaCurso(List<Curso> cursos) {
@@ -42,6 +42,8 @@ public class TabelaCurso extends AbstractTableModel {
                 return curso.getId();
             case 1:
                 return curso.getDescricao();
+            case 2:
+                return curso.getQuantidadeModulos();
             default:
                 return null;
         }
