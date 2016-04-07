@@ -5,31 +5,36 @@
  */
 package gui;
 
+import dao.DisciplinaDAO;
 import java.awt.Color;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import modelo.Disciplina;
+import tabela.TabelaDisciplina;
 
 /**
  *
  * @author STI01
  */
-public class DisplinaGUI extends javax.swing.JInternalFrame {
+public class DisciplinaGUI extends javax.swing.JInternalFrame {
 
-    private static DisplinaGUI displinaGUI;
+    TabelaDisciplina tabelaDisciplina = new TabelaDisciplina();
+    private static DisciplinaGUI displinaGUI;
 
     /**
      * Creates new form DisplinaGUI
      */
-    private DisplinaGUI() {
+    private DisciplinaGUI() {
         initComponents();
+        jTable2.setModel(tabelaDisciplina);
+        povoarTabela();
         TextPrompt textPrompt = new TextPrompt("DIGITE O NOME DA DISCIPLINA", jTConsulta);
         textPrompt.setForeground(Color.GRAY);
         ((BasicInternalFrameUI) getUI()).setNorthPane(null);
     }
 
-    public static DisplinaGUI getInstancia() {
+    public static DisciplinaGUI getInstancia() {
         if (displinaGUI == null) {
-            displinaGUI = new DisplinaGUI();
+            displinaGUI = new DisciplinaGUI();
         }
         return displinaGUI;
     }
@@ -224,9 +229,10 @@ public class DisplinaGUI extends javax.swing.JInternalFrame {
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
         Disciplina disciplina = new Disciplina();
-        disciplina.setCarga_horaria(WHEN_FOCUSED);
-        disciplina.setDecricao(title);
-
+        disciplina.setCargaHoraria(Integer.valueOf(jTCarga.getText()));
+        disciplina.setDescricao(jTDisciplina.getText());
+        new DisciplinaDAO().Gravar(disciplina);
+        povoarTabela();
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -245,4 +251,8 @@ public class DisplinaGUI extends javax.swing.JInternalFrame {
     private javax.swing.JTextField jTDisciplina;
     private javax.swing.JTable jTable2;
     // End of variables declaration//GEN-END:variables
+
+    private void povoarTabela() {
+        tabelaDisciplina.addListaDisciplina(new DisciplinaDAO().buscarTodos());
+    }
 }

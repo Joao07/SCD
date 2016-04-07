@@ -1,18 +1,15 @@
 package tabela;
 
-import dao.CursoDAO;
 import dao.TurmaDAO;
 import java.util.List;
 import javax.swing.table.AbstractTableModel;
-import modelo.Curso;
 import modelo.Turma;
 
 public class TabelaTurma extends AbstractTableModel {
 
     private final List<Turma> turmas;
-    private final String[] colunas = {"ID", "Descrição","Turno"};
+    private final String[] colunas = {"ID", "Descrição", "Turno"};
     private TurmaDAO TurmaDAO;
-    
 
     public TabelaTurma(List<Turma> turmas) {
         this.turmas = turmas;
@@ -47,7 +44,7 @@ public class TabelaTurma extends AbstractTableModel {
                 return turma.getDescricao();
             case 2:
                 return turma.getTurno();
-                
+
             default:
                 return null;
         }

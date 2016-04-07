@@ -4,8 +4,8 @@ package modelo;
 public class Disciplina {
 
     private long id;
-    private String decricao;
-    private long carga_horaria;
+    private String descricao;
+    private long cargaHoraria;
 
     public long getId() {
         return id;
@@ -15,20 +15,20 @@ public class Disciplina {
         this.id = id;
     }
 
-    public String getDecricao() {
-        return decricao;
+    public String getDescricao() {
+        return descricao;
     }
 
-    public void setDecricao(String decricao) {
-        this.decricao = decricao;
+    public void setDescricao(String descricao) {
+        this.descricao = descricao;
     }
 
-    public long getCarga_horaria() {
-        return carga_horaria;
+    public long getCargaHoraria() {
+        return cargaHoraria;
     }
 
-    public void setCarga_horaria(long carga_horaria) {
-        this.carga_horaria = carga_horaria;
+    public void setCargaHoraria(long cargaHoraria) {
+        this.cargaHoraria = cargaHoraria;
     }
 
 
