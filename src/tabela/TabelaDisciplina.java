@@ -33,6 +33,7 @@ public class TabelaDisciplina extends AbstractTableModel {
 
     public void addListaDisciplina(List<Disciplina> disciplinas) {
         this.disciplinas = disciplinas;
+        fireTableDataChanged();
     }
 
     public void addDisciplina(Disciplina disciplina) {
@@ -78,7 +79,7 @@ public class TabelaDisciplina extends AbstractTableModel {
             case 1:
                 return disciplina.getDescricao();
             case 2:
-                return disciplina.getCargaHoraria();
+                return disciplina.getCargaHoraria().toString();
             default:
                 return null;
         }

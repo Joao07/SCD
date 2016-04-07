@@ -20,9 +20,7 @@ public class DisciplinaDAO {
     public void Gravar(Disciplina disciplina) {
         try {
             conexao = Conexao.getConexao();
-            String query = "INSERT INTO disciplina(descricao_disciplina,"
-                    + "carga_horaria)"
-                    + "VALUES (?,?)";
+            String query = "INSERT INTO disciplina(descricao_disciplina,carga_horaria) VALUES (?,?)";
 
             sql = conexao.prepareStatement(query);
             sql.setString(1, disciplina.getDescricao());
@@ -50,5 +48,17 @@ public class DisciplinaDAO {
         }
 
         return disciplinas;
+    }
+
+    public boolean remover(long id) {
+        try {
+            sql = Conexao.getConexao().prepareStatement("DELETE FROM disciplina WHERE id_disciplina=?");
+            sql.setLong(1, id);
+            return sql.execute();
+        } catch (SQLException ex) {
+            Logger.getLogger(DisciplinaDAO.class.getName()).log(Level.SEVERE, null, ex);
+        }
+
+        return false;
     }
 }

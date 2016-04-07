@@ -23,7 +23,7 @@ public class Disciplina {
         this.descricao = descricao;
     }
 
-    public long getCargaHoraria() {
+    public Long getCargaHoraria() {
         return cargaHoraria;
     }
 
