@@ -6,8 +6,11 @@ import java.util.logging.Logger;
 
 public class MENUGUI extends javax.swing.JFrame {
 
+    private final GerenciadorDeJanelas deJanelas;
+
     public MENUGUI() {
         initComponents();
+        deJanelas = new GerenciadorDeJanelas(jDesktopPane1);
     }
 
     @SuppressWarnings("unchecked")
@@ -174,15 +177,11 @@ public class MENUGUI extends javax.swing.JFrame {
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-        TurmaGUI turmaGUI = new TurmaGUI();
-        jDesktopPane1.add(turmaGUI);
-        turmaGUI.setVisible(true);
+       deJanelas.openInternalFrame(TurmaGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-        DisplinaGUI displinaGUI = new DisplinaGUI();
-        jDesktopPane1.add(displinaGUI);
-        displinaGUI.setVisible(true);
+     deJanelas.openInternalFrame(DisplinaGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed

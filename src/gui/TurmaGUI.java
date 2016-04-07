@@ -7,6 +7,7 @@ import tabela.TabelaTurma;
 
 public class TurmaGUI extends javax.swing.JInternalFrame {
 
+    private static TurmaGUI turmaGUI;
     private final Turma turma = new Turma();
     private tabela.TabelaTurma tabelaTurma;
     private final TurmaDAO turmaDAO = new TurmaDAO();
@@ -15,6 +16,13 @@ public class TurmaGUI extends javax.swing.JInternalFrame {
     public TurmaGUI() {
         initComponents();
         TabelaTurma();
+    }
+
+    public static TurmaGUI getInstancia() {
+        if (turmaGUI == null) {
+            turmaGUI = new TurmaGUI();
+        }
+        return turmaGUI;
     }
 
     public final void TabelaTurma() {
@@ -34,7 +42,7 @@ public class TurmaGUI extends javax.swing.JInternalFrame {
         jTextDescricao = new javax.swing.JTextField();
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
-        jComboTurno = new javax.swing.JComboBox<>();
+        jComboTurno = new javax.swing.JComboBox<String>();
         jLabel3 = new javax.swing.JLabel();
         jTextAno = new javax.swing.JTextField();
         jPanel2 = new javax.swing.JPanel();
@@ -49,6 +57,23 @@ public class TurmaGUI extends javax.swing.JInternalFrame {
         setMaximizable(true);
         setResizable(true);
         setTitle("Turma");
+        addInternalFrameListener(new javax.swing.event.InternalFrameListener() {
+            public void internalFrameActivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosed(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameClosing(javax.swing.event.InternalFrameEvent evt) {
+                formInternalFrameClosing(evt);
+            }
+            public void internalFrameDeactivated(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameDeiconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameIconified(javax.swing.event.InternalFrameEvent evt) {
+            }
+            public void internalFrameOpened(javax.swing.event.InternalFrameEvent evt) {
+            }
+        });
 
         jButtonSalvar.setText("Salvar");
         jButtonSalvar.addActionListener(new java.awt.event.ActionListener() {
@@ -74,7 +99,7 @@ public class TurmaGUI extends javax.swing.JInternalFrame {
 
         jLabel2.setText("Turno:");
 
-        jComboTurno.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Manhã", "Tarde", "Noite" }));
+        jComboTurno.setModel(new javax.swing.DefaultComboBoxModel(new String[] { "Manhã", "Tarde", "Noite" }));
         jComboTurno.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jComboTurnoActionPerformed(evt);
@@ -207,17 +232,21 @@ public class TurmaGUI extends javax.swing.JInternalFrame {
         turma.setTurno(jComboTurno.getSelectedItem().toString());
         turma.setAno(Long.parseLong(jTextAno.getText()));
         turmaDAO.Gravar(turma);
-      
+
     }//GEN-LAST:event_jButtonSalvarActionPerformed
 
     private void jButtonExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButtonExcluirActionPerformed
-       int linha = jTable1.getSelectedRow();
+        int linha = jTable1.getSelectedRow();
         tabelaTurma.get(linha);
         id_TURMA.setText(tabelaTurma.getValueAt(linha, 0).toString());
         turma.setId(Long.parseLong(id_TURMA.getText()));
         turmaDAO.Excluir(turma);
         TabelaTurma();
     }//GEN-LAST:event_jButtonExcluirActionPerformed
+
+    private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
+        turmaGUI = null;// TODO add your handling code here:
+    }//GEN-LAST:event_formInternalFrameClosing
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

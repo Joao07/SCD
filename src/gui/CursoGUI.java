@@ -1,7 +1,6 @@
 package gui;
 
 import dao.CursoDAO;
-import javax.swing.JOptionPane;
 import javax.swing.JTextField;
 import modelo.Curso;
 import tabela.TabelaCurso;
