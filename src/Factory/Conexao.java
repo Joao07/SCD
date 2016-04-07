@@ -5,7 +5,7 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-// senha postegre97
+
 
 public class Conexao {
 
@@ -15,7 +15,8 @@ public class Conexao {
 
         try {
             if (connection == null) {
-                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/X9", "postgres", "root");
+                // senha postegre97
+                connection = DriverManager.getConnection("jdbc:postgresql://localhost:5432/X9", "postgres", "postegre97");
             }
         } catch (SQLException ex) {
             Logger.getLogger(Conexao.class.getName()).log(Level.SEVERE, null, ex);
