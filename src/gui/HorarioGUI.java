@@ -1,11 +1,17 @@
-
-
 package gui;
-
 
 public class HorarioGUI extends javax.swing.JInternalFrame {
 
-    public HorarioGUI() {
+    private static HorarioGUI horarioGUI;
+
+    public static HorarioGUI getInstancia() {
+        if (horarioGUI == null) {
+            horarioGUI = new HorarioGUI();
+        }
+        return horarioGUI;
+    }
+
+    private HorarioGUI() {
         initComponents();
     }
 

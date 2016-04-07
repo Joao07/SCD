@@ -11,14 +11,20 @@ public class CursoGUI extends javax.swing.JInternalFrame {
     private final CursoDAO cursoDAO = new CursoDAO();
     private TabelaCurso tabelaCurso;
     private final JTextField ID_CURSO = new JTextField();
-    
 
-    public CursoGUI() {
+    private static CursoGUI cursoGUI;
+
+    public static CursoGUI getInstancia() {
+        if (cursoGUI == null) {
+            cursoGUI = new CursoGUI();
+        }
+        return cursoGUI;
+    }
+
+    private CursoGUI() {
         initComponents();
         TabelaCurso();
-        
-        
-        
+
     }
 
     public final void TabelaCurso() {
@@ -290,7 +296,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         cursoDAO.Gravar(curso);
         jTextDescricao.setText("");
         TabelaCurso();
-       
+
 
     }//GEN-LAST:event_jButton1ActionPerformed
 
@@ -301,16 +307,16 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         curso.setId(Long.parseLong(ID_CURSO.getText()));
         cursoDAO.Excluir(curso);
         TabelaCurso();
-        
+
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jTextField1CaretUpdate(javax.swing.event.CaretEvent evt) {//GEN-FIRST:event_jTextField1CaretUpdate
-        if(jTextField1.getText().isEmpty()){
+        if (jTextField1.getText().isEmpty()) {
             TabelaCurso();
-        }else{
+        } else {
             tabelaCurso = new tabela.TabelaCurso(cursoDAO.Pesquisar(jTextField1.getText()));
-        jTable1.setModel(tabelaCurso);
-        jTable1.setFillsViewportHeight(true);
+            jTable1.setModel(tabelaCurso);
+            jTable1.setFillsViewportHeight(true);
         }
     }//GEN-LAST:event_jTextField1CaretUpdate
 

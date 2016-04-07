@@ -1,9 +1,5 @@
 package gui;
 
-import java.beans.PropertyVetoException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 public class MENUGUI extends javax.swing.JFrame {
 
     private final GerenciadorDeJanelas deJanelas;
@@ -155,44 +151,23 @@ public class MENUGUI extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jMenuItem1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem1ActionPerformed
-        try {
-            ProfessorGUI professorGUI = new ProfessorGUI();
-            jDesktopPane1.add(professorGUI);
-            professorGUI.setVisible(true);
-            professorGUI.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(MENUGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        deJanelas.openInternalFrame(ProfessorGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem1ActionPerformed
 
     private void jMenuItem2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem2ActionPerformed
-        CursoGUI curso = new CursoGUI();
-        jDesktopPane1.add(curso);
-        curso.setVisible(true);
-        try {
-            curso.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(MENUGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        deJanelas.openInternalFrame(CursoGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem2ActionPerformed
 
     private void jMenuItem4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem4ActionPerformed
-       deJanelas.openInternalFrame(TurmaGUI.getInstancia());
+        deJanelas.openInternalFrame(TurmaGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem4ActionPerformed
 
     private void jMenuItem6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenuItem6ActionPerformed
-     deJanelas.openInternalFrame(DisciplinaGUI.getInstancia());
+        deJanelas.openInternalFrame(DisciplinaGUI.getInstancia());
     }//GEN-LAST:event_jMenuItem6ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        try {
-            HorarioGUI horarioGUI = new HorarioGUI();
-            jDesktopPane1.add(horarioGUI);
-            horarioGUI.setVisible(true);
-            horarioGUI.setMaximum(true);
-        } catch (PropertyVetoException ex) {
-            Logger.getLogger(MENUGUI.class.getName()).log(Level.SEVERE, null, ex);
-        }
+        deJanelas.openInternalFrame(HorarioGUI.getInstancia());
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jMenu4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jMenu4ActionPerformed
