@@ -1,13 +1,13 @@
 
 package x9;
 
-import gui.MENUGUI;
+import gui.MenuGUI;
 import javax.swing.JFrame;
 
 public class X9 {
     
     public static void main(String[] args) {
-        MENUGUI menugui = new MENUGUI();
+        MenuGUI menugui = new MenuGUI();
         menugui.setExtendedState(JFrame.MAXIMIZED_BOTH);
         menugui.setVisible(true);
     }
