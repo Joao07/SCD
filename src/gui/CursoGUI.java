@@ -11,26 +11,26 @@ import tabela.GenericComboBoxModel;
 import tabela.TabelaCurso;
 
 public class CursoGUI extends javax.swing.JInternalFrame {
-
+    
     private Curso curso = new Curso();
     private TabelaCurso tabelaCurso;
-
+    
     private static CursoGUI cursoGUI;
-
+    
     public static CursoGUI getInstancia() {
         if (cursoGUI == null) {
             cursoGUI = new CursoGUI();
         }
         return cursoGUI;
     }
-
+    
     private CursoGUI() {
         initComponents();
         ((BasicInternalFrameUI) getUI()).setNorthPane(null);
         TabelaCurso();
-
+        
     }
-
+    
     private void encapsular() {
         if (curso == null) {
             curso = new Curso();
@@ -42,16 +42,16 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         }
         curso.setDescricao(jTextDescricao.getText());
         curso.setQuantidadeModulos(quant);
-
+        tabelaCurso.addCurso(curso);
         // TODO add your handling code here:
     }
-
+    
     public final void TabelaCurso() {
         tabelaCurso = new tabela.TabelaCurso(new CursoDAO().getCurso());
         jTable1.setModel(tabelaCurso);
         jTable1.setFillsViewportHeight(true);
     }
-
+    
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
@@ -358,7 +358,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         new CursoDAO().Gravar(curso);
         jTextDescricao.setText("");
         TabelaCurso();
-
+        
 
     }//GEN-LAST:event_jButton1ActionPerformed
 

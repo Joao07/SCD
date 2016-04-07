@@ -16,19 +16,11 @@ import modelo.Disciplina;
  */
 public class TabelaDisciplina extends AbstractTableModel {
 
-    private static TabelaDisciplina tabelaDisciplina;
     private List<Disciplina> disciplinas = new ArrayList<>();
     private final String colunas[] = {"id", "Descrição", "Carga Horária"};
 
     public TabelaDisciplina() {
 
-    }
-
-    public static TabelaDisciplina getInstancia() {
-        if (tabelaDisciplina == null) {
-            tabelaDisciplina = new TabelaDisciplina();
-        }
-        return tabelaDisciplina;
     }
 
     public void addListaDisciplina(List<Disciplina> disciplinas) {
