@@ -1,5 +1,6 @@
 CREATE DATABASE "X9" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Portuguese_Brazil.1252' LC_CTYPE = 'Portuguese_Brazil.1252';
 
+
 CREATE TABLE professor (
     id_professor serial NOT NULL primary key,
     nome character(200),
@@ -42,7 +43,6 @@ CREATE TABLE turma (
     descricao_turma character varying(60),
     turno_turma character varying(15),
     ano_turma integer,
-foreign key (id_disciplina)references disciplina (id_disciplina),
 foreign key (id_curso) references curso (id_curso)
 );
 
@@ -76,6 +76,16 @@ id_professor integer not null,
     "descricaoOcorrencia" character(500),
 foreign key (id_professor)references professor (id_professor)
 );
+
+
+
+
+
+
+
+
+
+
 
 
 
