@@ -1,7 +1,5 @@
 CREATE DATABASE "X9" WITH TEMPLATE = template0 ENCODING = 'UTF8' LC_COLLATE = 'Portuguese_Brazil.1252' LC_CTYPE = 'Portuguese_Brazil.1252';
 
-connect "X9";
-
 CREATE TABLE professor (
     id_professor serial NOT NULL primary key,
     nome character(200),
@@ -15,6 +13,7 @@ CREATE TABLE professor (
     cod_siape character(50),
     email character(200),
     celular character(30),
+    "uf" character(2),
     telefone_fixo character(30)
 );
 
@@ -40,6 +39,7 @@ CREATE TABLE periodo (
     id_periodo serial NOT NULL primary key,
     id_disciplina integer,
     id_curso integer,
+    ano character(150),
 foreign key (id_disciplina)references disciplina (id_disciplina),
 foreign key (id_curso)references curso (id_curso)
 );
@@ -50,11 +50,11 @@ CREATE TABLE horario (
     "id_turma" integer,
     "id_disciplina" character(300),
     "hora_inicio" character(20),
+    "hora_fim" character(20), 
+    "data" date,
+    "status" character(50),
 
-"data" data,
-    "status" integer(500),
-
-foreign key (id_professor)references profedsor (id_professor)
+foreign key (id_professor)references professor (id_professor)
 );
 
 
@@ -64,8 +64,14 @@ id_professor integer not null,
     "dataOcorrencia" date,
     observacao character(300),
     "descricaoOcorrencia" character(500),
-foreign key (id_professor)references profedsor (id_professor)
+foreign key (id_professor)references professor (id_professor)
 );
+
+
+
+
+
+
 
 
 
