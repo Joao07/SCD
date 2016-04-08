@@ -34,17 +34,19 @@ public class CursoDAO {
         return false;
     }
 
-    public void Excluir(Curso curso) {
+    public boolean excluir(long id) {
         conexao = Conexao.getConexao();
         String query = "delete from curso where id_curso = ? ";
         try {
             sql = conexao.prepareStatement(query);
-            sql.setLong(1, curso.getId());
+            sql.setLong(1, id);
             sql.execute();
             JOptionPane.showMessageDialog(null, "Curso excluido com Sucesso !!!");
+            return true;
         } catch (SQLException ex) {
             Logger.getLogger(CursoDAO.class.getName()).log(Level.SEVERE, null, ex);
         }
+        return false;
     }
 
     public List<Curso> buscarTodos() {
