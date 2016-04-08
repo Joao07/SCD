@@ -1,5 +1,6 @@
 package dao;
 
+import Factory.Conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -17,11 +18,9 @@ public class CursoDAO {
     private PreparedStatement sql;
     private ResultSet registro;
 
-    public boolean Gravar(Curso curso) {
-//        conexao = Conexao.getConexao();
-        String query = "INSERT INTO curso(\n"
-                + "    descricao_curso,quantidadeModulos)\n"
-                + "    VALUES (?);";
+    public boolean gravar(Curso curso) {
+        conexao = Conexao.getConexao();
+        String query = "INSERT INTO curso(descricao_curso, quantidadeModulos) VALUES (?,?)";
         try {
             sql = conexao.prepareStatement(query);
             sql.setString(1, curso.getDescricao());
@@ -36,6 +35,7 @@ public class CursoDAO {
     }
 
     public void Excluir(Curso curso) {
+        conexao = Conexao.getConexao();
         String query = "delete from curso where id_curso = ? ";
         try {
             sql = conexao.prepareStatement(query);
@@ -48,6 +48,7 @@ public class CursoDAO {
     }
 
     public List<Curso> buscarTodos() {
+        conexao = Conexao.getConexao();
         try {
             List<Curso> cursos = new ArrayList<>();
             String query = "select * from curso limit 100";
@@ -57,6 +58,7 @@ public class CursoDAO {
             while (registro.next()) {
                 Curso curso = new Curso();
                 curso.setDescricao(registro.getString("descricao_curso"));
+                curso.setQuantidadeModulos(registro.getInt("quantidadeModulos"));
                 curso.setId(registro.getLong("id_curso"));
                 cursos.add(curso);
             }
@@ -68,6 +70,7 @@ public class CursoDAO {
     }
 
     public List<Curso> Pesquisar(String descricao) {
+        conexao = Conexao.getConexao();
         try {
             List<Curso> cursos = new ArrayList<>();
             String query = "select * from curso where descricao_curso ilike '%?%'";
