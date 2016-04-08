@@ -43,7 +43,7 @@ public class TabelaCurso extends AbstractTableModel {
     }
 
     public TabelaCurso() {
-        this.cursos = CursoDAO.getCurso();
+        this.cursos = CursoDAO.buscarTodos();
     }
 
     @Override

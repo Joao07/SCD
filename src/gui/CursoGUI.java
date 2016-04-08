@@ -3,7 +3,6 @@ package gui;
 import dao.CursoDAO;
 import dao.DisciplinaDAO;
 import java.util.ArrayList;
-import java.util.List;
 import javax.swing.plaf.basic.BasicInternalFrameUI;
 import modelo.Curso;
 import modelo.Disciplina;
@@ -11,53 +10,49 @@ import tabela.GenericComboBoxModel;
 import tabela.TabelaCurso;
 
 public class CursoGUI extends javax.swing.JInternalFrame {
-    
-    private Curso curso = new Curso();
-    private TabelaCurso tabelaCurso;
-    
+
+       private TabelaCurso tabelaCurso;
     private static CursoGUI cursoGUI;
-    
+
     public static CursoGUI getInstancia() {
         if (cursoGUI == null) {
             cursoGUI = new CursoGUI();
         }
         return cursoGUI;
     }
-    
+
     private CursoGUI() {
         initComponents();
         ((BasicInternalFrameUI) getUI()).setNorthPane(null);
         TabelaCurso();
-        
+
     }
-    
-    private void encapsular() {
-        if (curso == null) {
-            curso = new Curso();
-        }
-        Integer quant = Integer.valueOf(jSQuantidade.getValue().toString());
+
+    private Curso encapsular() {
+        Curso curso1 = new Curso();
+        Integer quantidadeModulos = Integer.valueOf(jSQuantidade.getValue().toString());
         jComboModel.removeAllItems();
-        for (int i = 1; i <= quant; i++) {
+        for (int i = 1; i <= quantidadeModulos; i++) {
             jComboModel.addItem(i);
         }
-        curso.setDescricao(jTextDescricao.getText());
-        curso.setQuantidadeModulos(quant);
-        tabelaCurso.addCurso(curso);
-        // TODO add your handling code here:
+        curso1.setDescricao(jTextDescricao.getText());
+        curso1.setQuantidadeModulos(quantidadeModulos);
+        tabelaCurso.addCurso(curso1);
+        return curso1;
     }
-    
+
     public final void TabelaCurso() {
-        tabelaCurso = new tabela.TabelaCurso(new CursoDAO().getCurso());
-        jTable1.setModel(tabelaCurso);
-        jTable1.setFillsViewportHeight(true);
+        tabelaCurso = new tabela.TabelaCurso(new CursoDAO().buscarTodos());
+        jTCurso.setModel(tabelaCurso);
+        jTCurso.setFillsViewportHeight(true);
     }
-    
+
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        jBGravar = new javax.swing.JButton();
+        jBExcluir = new javax.swing.JButton();
         jTabbedPane1 = new javax.swing.JTabbedPane();
         jPanel2 = new javax.swing.JPanel();
         jPanel5 = new javax.swing.JPanel();
@@ -65,17 +60,17 @@ public class CursoGUI extends javax.swing.JInternalFrame {
         jTextDescricao = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jSQuantidade = new javax.swing.JSpinner();
-        jButton3 = new javax.swing.JButton();
+        jBAdicionarCurso = new javax.swing.JButton();
         jPanel1 = new javax.swing.JPanel();
         jComboBox1 = new javax.swing.JComboBox();
         jScrollPane2 = new javax.swing.JScrollPane();
         jList1 = new javax.swing.JList();
         jScrollPane1 = new javax.swing.JScrollPane();
-        jTable1 = new javax.swing.JTable();
+        jTCurso = new javax.swing.JTable();
         jComboModel = new javax.swing.JComboBox();
         jLabel2 = new javax.swing.JLabel();
-        jButton4 = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        jBAddRemover = new javax.swing.JButton();
+        jBAddDisciplina = new javax.swing.JButton();
         jPanel3 = new javax.swing.JPanel();
         jScrollPane3 = new javax.swing.JScrollPane();
         jTable2 = new javax.swing.JTable();
@@ -108,25 +103,25 @@ public class CursoGUI extends javax.swing.JInternalFrame {
             }
         });
 
-        jButton1.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton1.setText("Gravar");
-        jButton1.setFocusable(false);
-        jButton1.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton1.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
+        jBGravar.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBGravar.setText("Gravar");
+        jBGravar.setFocusable(false);
+        jBGravar.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBGravar.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBGravar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
+                jBGravarActionPerformed(evt);
             }
         });
 
-        jButton2.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
-        jButton2.setText("Excluir");
-        jButton2.setFocusable(false);
-        jButton2.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
-        jButton2.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
-        jButton2.addActionListener(new java.awt.event.ActionListener() {
+        jBExcluir.setFont(new java.awt.Font("Tahoma", 1, 11)); // NOI18N
+        jBExcluir.setText("Excluir");
+        jBExcluir.setFocusable(false);
+        jBExcluir.setHorizontalTextPosition(javax.swing.SwingConstants.CENTER);
+        jBExcluir.setVerticalTextPosition(javax.swing.SwingConstants.BOTTOM);
+        jBExcluir.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton2ActionPerformed(evt);
+                jBExcluirActionPerformed(evt);
             }
         });
 
@@ -137,10 +132,10 @@ public class CursoGUI extends javax.swing.JInternalFrame {
 
         jLabel3.setText("Módulos:");
 
-        jButton3.setText("ADCIONAR");
-        jButton3.addActionListener(new java.awt.event.ActionListener() {
+        jBAdicionarCurso.setText("ADCIONAR");
+        jBAdicionarCurso.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton3ActionPerformed(evt);
+                jBAdicionarCursoActionPerformed(evt);
             }
         });
 
@@ -158,7 +153,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addComponent(jSQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, 54, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton3)
+                .addComponent(jBAdicionarCurso)
                 .addContainerGap())
         );
         jPanel5Layout.setVerticalGroup(
@@ -170,7 +165,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                     .addComponent(jTextDescricao, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                     .addComponent(jLabel3)
                     .addComponent(jSQuantidade, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton3))
+                    .addComponent(jBAdicionarCurso))
                 .addContainerGap())
         );
 
@@ -182,7 +177,7 @@ public class CursoGUI extends javax.swing.JInternalFrame {
 
         jScrollPane2.setViewportView(jList1);
 
-        jTable1.setModel(new javax.swing.table.DefaultTableModel(
+        jTCurso.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -193,13 +188,13 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
-        jScrollPane1.setViewportView(jTable1);
+        jScrollPane1.setViewportView(jTCurso);
 
         jLabel2.setText("Modúlo:");
 
-        jButton4.setText("REMOVER");
+        jBAddRemover.setText("REMOVER");
 
-        jButton5.setText("ADCIONAR");
+        jBAddDisciplina.setText("ADCIONAR");
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -215,8 +210,8 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addComponent(jLabel2, javax.swing.GroupLayout.PREFERRED_SIZE, 47, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(jButton4, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBAddRemover, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                    .addComponent(jBAddDisciplina, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jComboModel, 0, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -231,17 +226,17 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createSequentialGroup()
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(jComboBox1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jButton5))
+                            .addComponent(jBAddDisciplina))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE)
                             .addGroup(jPanel1Layout.createSequentialGroup()
-                                .addComponent(jButton4)
+                                .addComponent(jBAddRemover)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                 .addComponent(jLabel2)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(jComboModel, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addGap(0, 52, Short.MAX_VALUE))))
+                                .addGap(0, 0, Short.MAX_VALUE))))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap())
         );
@@ -325,16 +320,16 @@ public class CursoGUI extends javax.swing.JInternalFrame {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addGap(5, 5, 5)
-                .addComponent(jButton1)
+                .addComponent(jBGravar)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addComponent(jButton2)
+                .addComponent(jBExcluir)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jButton6, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
             .addComponent(jTabbedPane1)
         );
 
-        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jButton1, jButton2, jButton6});
+        layout.linkSize(javax.swing.SwingConstants.HORIZONTAL, new java.awt.Component[] {jBExcluir, jBGravar, jButton6});
 
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -342,40 +337,37 @@ public class CursoGUI extends javax.swing.JInternalFrame {
                 .addComponent(jTabbedPane1)
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)
+                    .addComponent(jBGravar)
+                    .addComponent(jBExcluir)
                     .addComponent(jButton6))
                 .addContainerGap())
         );
 
-        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jButton1, jButton2, jButton6});
+        layout.linkSize(javax.swing.SwingConstants.VERTICAL, new java.awt.Component[] {jBExcluir, jBGravar, jButton6});
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        curso.setDescricao(jTextDescricao.getText());
-        new CursoDAO().Gravar(curso);
-        jTextDescricao.setText("");
-        TabelaCurso();
-        
+    private void jBGravarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBGravarActionPerformed
+     
 
-    }//GEN-LAST:event_jButton1ActionPerformed
+    }//GEN-LAST:event_jBGravarActionPerformed
 
-    private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
+    private void jBExcluirActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBExcluirActionPerformed
 
-    }//GEN-LAST:event_jButton2ActionPerformed
+    }//GEN-LAST:event_jBExcluirActionPerformed
 
     private void formInternalFrameClosing(javax.swing.event.InternalFrameEvent evt) {//GEN-FIRST:event_formInternalFrameClosing
         cursoGUI = null;        // TODO add your handling code here:
     }//GEN-LAST:event_formInternalFrameClosing
 
-    private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
-        encapsular();
-        ArrayList<Disciplina> disciplinas = (ArrayList<Disciplina>) new DisciplinaDAO().buscarTodos();
-        GenericComboBoxModel<Disciplina> comboBoxModel = new GenericComboBoxModel<>(disciplinas);
-        jComboBox1.setModel(comboBoxModel);
-    }//GEN-LAST:event_jButton3ActionPerformed
+    private void jBAdicionarCursoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jBAdicionarCursoActionPerformed
+        if (new CursoDAO().Gravar(encapsular())) {
+            ArrayList<Disciplina> disciplinas = (ArrayList<Disciplina>) new DisciplinaDAO().buscarTodos();
+            GenericComboBoxModel<Disciplina> comboBoxModel = new GenericComboBoxModel<>(disciplinas);
+            jComboBox1.setModel(comboBoxModel);
+        }
+    }//GEN-LAST:event_jBAdicionarCursoActionPerformed
 
     private void jComboBox1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jComboBox1ActionPerformed
         // TODO add your handling code here:
@@ -387,11 +379,11 @@ public class CursoGUI extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
-    private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
-    private javax.swing.JButton jButton5;
+    private javax.swing.JButton jBAddDisciplina;
+    private javax.swing.JButton jBAddRemover;
+    private javax.swing.JButton jBAdicionarCurso;
+    private javax.swing.JButton jBExcluir;
+    private javax.swing.JButton jBGravar;
     private javax.swing.JButton jButton6;
     private javax.swing.JComboBox jComboBox1;
     private javax.swing.JComboBox jComboModel;
@@ -408,8 +400,8 @@ public class CursoGUI extends javax.swing.JInternalFrame {
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JScrollPane jScrollPane2;
     private javax.swing.JScrollPane jScrollPane3;
+    private javax.swing.JTable jTCurso;
     private javax.swing.JTabbedPane jTabbedPane1;
-    private javax.swing.JTable jTable1;
     private javax.swing.JTable jTable2;
     private javax.swing.JTextField jTextDescricao;
     private javax.swing.JTextField jTextField1;
